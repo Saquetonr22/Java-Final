@@ -1,0 +1,264 @@
+package com.Final;
+/*
+Ryan Saqueton
+Final project
+Guess higher or lower game
+ */
+import java.util.*;
+import java.lang.*;
+
+
+
+public class Client {
+    public static int currentBalance = 10;
+
+    public static void main(String[] args) {
+
+        Random rand = new Random();
+
+        String Answer;
+        int coins;
+
+
+        Scanner scan = new Scanner(System.in);
+        System.out.println("In this game, a number from 1 to 10 will be randomly generated. ");
+        System.out.println("You will start with 10 coins. Your goal is to guess if the next ");
+        System.out.println("number randomly generated will be greater than or less than ");
+        System.out.println("the previous number. This sequence will occur a maximum of 5 times. ");
+        System.out.println("If you guess 3 times in a row correctly, you will get your coins back. ");
+        System.out.println("If you guess 4 times in a row correctly, you will double what you bid. ");
+        System.out.println("Lastly if you guess 5 times in a row correctly, you triple what you bid. ");
+        System.out.println("Enter higher if you think the next number will be higher and enter ");
+        System.out.println("lower if you think the next number will be lower ");
+        System.out.println(" ");
+        System.out.println(" ");
+
+
+        while (true) {
+            int Num1 = rand.nextInt(10) + 1;
+            int Num2 = rand.nextInt(10) + 1;
+            int Num3 = rand.nextInt(10) + 1;
+            int Num4 = rand.nextInt(10) + 1;
+            int Num5 = rand.nextInt(10) + 1;
+            int Num6 = rand.nextInt(10) + 1;
+            System.out.println("You have " + currentBalance + " coins, how many coins would you like to bet?");
+            coins = scan.nextInt();
+            // Makes sure you cannot bet more coins than you have and if you have less than 1 coin, you go back to having 10 coins
+            if (coins > currentBalance) {
+                coins = currentBalance;
+            } else if ((currentBalance - coins) <= -1) {
+                currentBalance = 10;
+                System.out.println("You cannot bet this much");
+                continue;
+            } else {
+                currentBalance = currentBalance - coins;
+                System.out.println("You have " + currentBalance + " coins");
+            }
+
+            Prize(scan);
+
+            System.out.println(" ");
+            System.out.println("The game has started");
+            System.out.println(" ");
+            System.out.println("The number is " + Num1);
+            System.out.println(" ");
+            System.out.print("higher or lower: ");
+
+            Answer = scan.next();
+            Answer = Answer.toLowerCase();
+
+// Start of game code
+            {
+                if (Answer.equals("higher")) {
+                    System.out.println("The number is " + Num2);//prints the random number
+                }
+                if (Answer.equals("lower")) {
+                    System.out.println("The number is " + Num2);//prints the random number
+                }
+                if (Num2 > Num1 && Answer.equals("higher")) {//checks and sees if answer is correct
+                    System.out.println("Your answer was correct, you can keep going");
+                } else if (Num2 < Num1 && Answer.equals("lower")) {//checks and sees if answer is correct
+                    System.out.println("Your answer was correct, you can keep going");
+                } else {
+                    System.out.println("Your answer was wrong:( You lost");//if answer is wrong, code goes back to the betting option
+                    continue;
+                }
+
+
+                System.out.println(Num2);
+                System.out.println(" ");
+                System.out.print("higher or lower: ");
+
+                Answer = scan.next();
+                Answer = Answer.toLowerCase();
+
+                if (Answer.equals("higher")) {
+                    System.out.println(Num3);
+                }
+                if (Answer.equals("lower")) {
+                    System.out.println(Num3);
+                }
+                if (Num3 > Num2 && Answer.equals("higher")) {
+                    System.out.println("Your answer was correct, you can keep going");
+                } else if (Num3 < Num2 && Answer.equals("lower")) {
+                    System.out.println("Your answer was correct, you can keep going");
+                } else {
+                    System.out.println("Your answer was wrong:( You lost");
+                    continue;
+                }
+                System.out.println(Num3);
+                System.out.println(" ");
+                System.out.print("higher or lower: ");
+
+                Answer = scan.next();
+                Answer = Answer.toLowerCase();
+
+                if (Answer.equals("higher")) {
+                    System.out.println(Num4);
+                }
+                if (Answer.equals("lower")) {
+                    System.out.println(Num4);
+                }
+                if (Num4 > Num3 && Answer.equals("higher")) {
+                    currentBalance += coins;
+                    System.out.println("Your answer was correct, you can keep going");
+                } else if (Num4 < Num3 && Answer.equals("lower")) {
+                    currentBalance += coins;
+                    System.out.println("Your answer was correct, you can keep going");
+                } else {
+                    System.out.println("Your answer was wrong:( You lost");
+                    continue;
+                }
+                System.out.println(Num4);
+                System.out.println(" ");
+                System.out.print("higher or lower: ");
+
+                Answer = scan.next();
+                Answer = Answer.toLowerCase();
+
+                if (Answer.equals("higher")) {
+                    System.out.println(Num5);
+                }
+                if (Answer.equals("lower")) {
+                    System.out.println(Num5);
+                }
+                if (Num5 > Num4 && Answer.equals("higher")) {
+                    currentBalance += coins * 2;
+                    System.out.println("Your answer was correct, you can keep going");
+                } else if (Num5 < Num4 && Answer.equals("lower")) {
+                    currentBalance += coins * 2;
+                    System.out.println("Your answer was correct, you can keep going");
+                } else {
+                    System.out.println("Your answer was wrong:( You lost");
+                    continue;
+                }
+                System.out.println(Num5);
+                System.out.println(" ");
+                System.out.print("higher or lower: ");
+
+                Answer = scan.next();
+                Answer = Answer.toLowerCase();
+
+                if (Answer.equals("higher")) {
+                    System.out.println(Num6);
+                }
+                if (Answer.equals("lower")) {
+                    System.out.println(Num6);
+                }
+                if (Num6 > Num5 && Answer.equals("higher")) {
+                    currentBalance += coins * 3;
+                    System.out.println("Your answer was correct, you can keep going");
+                } else if (Num6 < Num5 && Answer.equals("lower")) {
+                    currentBalance += coins * 3;
+                    System.out.println("Your answer was correct, you can keep going");
+                } else {
+                    System.out.println("Your answer was wrong:( You lost");
+                    continue;
+                }
+
+            }
+        }
+    }
+
+    public static void Prize(Scanner scan) {
+        // Gives the user the option to purchase many prizes. If they do not have not have enough coins, they cannot buy the prize
+        scan = new Scanner(System.in);
+        String PrizeAnswer;
+        String WhatPrize;
+        System.out.print("Would you like to buy something? (yes or no)");
+        PrizeAnswer = scan.next();
+
+        if (PrizeAnswer.equals("yes")) { //options of what you can buy
+            System.out.println("You can buy:");
+            System.out.println("Candy, 50 coins");
+            System.out.println("Clothes, 75 coins");
+            System.out.println("A Bike, 100 coins ");
+            System.out.println("AirPods, 250 coins");
+            System.out.println("An Xbox, 400 coins");
+            System.out.println("A Computer, 500 coins");
+            System.out.println("A Gucci Belt, 750 coins");
+            System.out.println("A Car, 1,500 coins");
+            System.out.println("An Apartment, 3,000 coins");
+            System.out.println("A House, 10,000 coins");
+            System.out.println("A Yacht, 25,000 coins");
+            System.out.println("A Java lesson with Ms. Suarez, 100,000 coins");
+
+            System.out.println("Which prize would you like to buy (enter name of prize)");
+            WhatPrize = scan.next();
+            WhatPrize = WhatPrize.toLowerCase();
+//Subtracts the cost of the prize from their current balance when they buy something
+            if (PrizeAnswer.equals("Candy")) {
+                currentBalance = currentBalance - 50;
+                System.out.println("You have bought candy which cost you 50 coins");
+            }
+            if (WhatPrize.equals("Clothes")) {
+                currentBalance = currentBalance - 75;
+                System.out.println("You have bought clothes which cost you 75 coins");
+            }
+            if (WhatPrize.equals("A Bike")) {
+                currentBalance = currentBalance - 100;
+                System.out.println("You have bought a bike which cost you 100 coins");
+            }
+            if (WhatPrize.equals("AirPods")) {
+                currentBalance = currentBalance - 250;
+                System.out.println("You have bought AirPods which cost you 250 coins");
+            }
+            if (WhatPrize.equals("An Xbox")) {
+                currentBalance = currentBalance - 400;
+                System.out.println("You have bought an Xbox which cost you 400 coins");
+            }
+            if (WhatPrize.equals("A Computer")) {
+                currentBalance = currentBalance - 500;
+                System.out.println("You have bought a computer which cost you 500 coins");
+            }
+            if (WhatPrize.equals("A Gucci Belt")) {
+                currentBalance = currentBalance - 750;
+                System.out.println("You have bought a Gucci Belt which cost you 750 coins");
+            }
+            if (WhatPrize.equals("A Car")) {
+                currentBalance = currentBalance - 1500;
+                System.out.println("You have bought a car which cost you 1,500 coins");
+            }
+            if (WhatPrize.equals("An Apartment")) {
+                currentBalance = currentBalance - 3000;
+                System.out.println("You have bought an apartment which cost you 3,000 coins");
+            }
+            if (WhatPrize.equals("A House")) {
+                currentBalance = currentBalance - 10000;
+                System.out.println("You have bought a house which cost you 10,000 coins");
+            }
+            if (WhatPrize.equals("A Yacht")) {
+                currentBalance = currentBalance - 25000;
+                System.out.println("You have bought a yacht which cost you 25,000 coins");
+            }
+            if (WhatPrize.equals("A Java lesson with Ms. Suarez")) {
+                currentBalance = currentBalance - 100000;
+                System.out.println("You have bought A java lesson with Ms. Suarez which cost you 100,000 coins");
+            } else {
+                System.out.println("Not a valid item");
+            }
+        }
+    }
+
+
+}
